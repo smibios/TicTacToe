@@ -74,12 +74,12 @@ namespace _3T
             switch (counter)
             {
                 case 0:
-                    // counter++;
+                    counter++;
                     sender.Content = "X";
                     sender.IsEnabled = false;
                     break;
                 case 1:
-                    //counter--;
+                    counter--;
                     sender.Content = "O";
                     sender.IsEnabled = false;
                     break;
