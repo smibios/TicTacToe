@@ -1,0 +1,15 @@
+C:\Users\Alan\Desktop\3T\bin\Debug\3T.exe.config
+C:\Users\Alan\Desktop\3T\bin\Debug\3T.exe
+C:\Users\Alan\Desktop\3T\bin\Debug\3T.pdb
+C:\Users\Alan\Desktop\3T\obj\Debug\3T.csprojAssemblyReference.cache
+C:\Users\Alan\Desktop\3T\obj\Debug\MainWindow.g.cs
+C:\Users\Alan\Desktop\3T\obj\Debug\App.g.cs
+C:\Users\Alan\Desktop\3T\obj\Debug\3T_MarkupCompile.cache
+C:\Users\Alan\Desktop\3T\obj\Debug\3T_MarkupCompile.lref
+C:\Users\Alan\Desktop\3T\obj\Debug\MainWindow.baml
+C:\Users\Alan\Desktop\3T\obj\Debug\3T.g.resources
+C:\Users\Alan\Desktop\3T\obj\Debug\_3T.Properties.Resources.resources
+C:\Users\Alan\Desktop\3T\obj\Debug\3T.csproj.GenerateResource.cache
+C:\Users\Alan\Desktop\3T\obj\Debug\3T.csproj.CoreCompileInputs.cache
+C:\Users\Alan\Desktop\3T\obj\Debug\3T.exe
+C:\Users\Alan\Desktop\3T\obj\Debug\3T.pdb
