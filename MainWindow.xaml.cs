@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 
 namespace _3T
 {
@@ -8,6 +9,9 @@ namespace _3T
     public partial class MainWindow : Window
     {
         //Declaration of variables
+
+        //Name of file which is used for saves number of wins
+        private const string path = "wins.txt";
 
         //Counter is used to tell us about whose turn is it
         private int counter;
@@ -21,6 +25,17 @@ namespace _3T
         public MainWindow()
         {
             InitializeComponent();
+            if (File.Exists(path))
+            {
+                if (MessageBox.Show(("Would you like to load data from file " + path), "Meassage", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                {
+                    FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                    StreamReader streamReader = new StreamReader(fs);
+                    wins[0] = int.Parse(streamReader.ReadLine());
+                    wins[1] = int.Parse(streamReader.ReadLine());
+                    streamReader.Close();
+                }
+            }
             Restart();
         }
 
@@ -95,7 +110,7 @@ namespace _3T
         /// <returns>true if someone won</returns>
         private bool Check()
         {
-            if ((buttonC0R0.Content.ToString() == "X" && buttonC0R1.Content.ToString() == "X" && buttonC0R2.Content.ToString() == "X") || (buttonC1R0.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC1R2.Content.ToString() == "X") || (buttonC2R0.Content.ToString() == "X" && buttonC2R1.Content.ToString() == "X" && buttonC2R2.Content.ToString() == "X") || (buttonC0R0.Content.ToString() == "X" && buttonC1R0.Content.ToString() == "X" && buttonC2R1.Content.ToString() == "X") || (buttonC0R1.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC2R1.Content.ToString() == "X") || (buttonC0R2.Content.ToString() == "X" && buttonC1R2.Content.ToString() == "X" && buttonC2R2.Content.ToString() == "X") || (buttonC2R0.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC0R2.Content.ToString() == "X") || (buttonC0R0.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC0R2.Content.ToString() == "X"))
+            if ((buttonC0R0.Content.ToString() == "X" && buttonC0R1.Content.ToString() == "X" && buttonC0R2.Content.ToString() == "X") || (buttonC1R0.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC1R2.Content.ToString() == "X") || (buttonC2R0.Content.ToString() == "X" && buttonC2R1.Content.ToString() == "X" && buttonC2R2.Content.ToString() == "X") || (buttonC0R0.Content.ToString() == "X" && buttonC1R0.Content.ToString() == "X" && buttonC2R1.Content.ToString() == "X") || (buttonC0R1.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC2R1.Content.ToString() == "X") || (buttonC0R2.Content.ToString() == "X" && buttonC1R2.Content.ToString() == "X" && buttonC2R2.Content.ToString() == "X") || (buttonC2R0.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC0R2.Content.ToString() == "X") || (buttonC0R0.Content.ToString() == "X" && buttonC1R1.Content.ToString() == "X" && buttonC2R2.Content.ToString() == "X"))
             {
                 MessageBox.Show("Cross won! Congrats");
                 wins[0]++;
@@ -125,6 +140,23 @@ namespace _3T
             buttonC0R0.Content = buttonC0R1.Content = buttonC0R2.Content = buttonC1R0.Content = buttonC1R1.Content = buttonC1R2.Content = buttonC2R0.Content = buttonC2R1.Content = buttonC2R2.Content = "";
 
             MessageBox.Show("Zaczyna gracz " + (counter == 0 ? "krzyżyk" : "kółko"));
+        }
+
+        /// <summary>
+        /// Method called on closing window. Method saves number of wins of each player. It's data whoch is used for next play.
+        /// </summary>
+        /// <param name="e">added automaticly</param>
+        /// <param name="sender">added automaticly</param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
+
+            FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+            StreamWriter streamWriter = new StreamWriter(fs);
+            streamWriter.WriteLine(wins[0]);
+            streamWriter.WriteLine(wins[1]);
+            streamWriter.Close();
         }
     }
 }
